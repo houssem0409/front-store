@@ -6,7 +6,9 @@ import SignIn from './components/SignIn';
 import Products from './pages/Products';
 import Orders from './pages/Orders';
 import Profile from './pages/Profile';
-import AddProduct from './pages/AddProduct';
+import Transactions from "./components/Transactions"
+import Dashboard from './pages/Dashboard';
+import AddProduct from "./pages/AddProduct"
 export  default class App extends React.Component {
   render() {
     return (
@@ -17,7 +19,9 @@ export  default class App extends React.Component {
             <Route path="/Products"  element={<Products/>} />   
             <Route path="/Orders"  element={<Orders/>} />  
             <Route path="/Profile"  element={<Profile/>} /> 
-            <Route path="/AddProduct"  element={<AddProduct/>} /> 
+            <Route path="/Dashboard"  element={<Dashboard/>} /> 
+            <Route path="/addProduct"  element={<AddProduct/>} /> 
+
       </Routes>
       </BrowserRouter>
     );

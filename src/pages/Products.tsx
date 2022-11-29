@@ -27,7 +27,8 @@ export default function Products() {
 
   return (
     <div>
-        <NavBar/>
+       <NavBar>
+        
       <div>
 
       <List sx={{ width: '100%', bgcolor: 'background.paper' , flexDirection : "row" ,display : "flex" , justifyContent : "space-between" }}>
@@ -36,6 +37,7 @@ export default function Products() {
         ))}
       </List>
       </div>
+       </NavBar>
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import NavBar from "../components/Navbar";
+import NavBar from "../../components/Navbar";
 import { List } from "@mui/material";
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
@@ -18,15 +18,18 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import Transactions from "../../components/Transactions";
 import CategoryIcon from '@mui/icons-material/Category';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import PersonIcon from '@mui/icons-material/Person';
 import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
-import { AddProductForm } from '../components/product/AddProductForm';
-
+import UsersTable from '../../components/user/UsersTable';
+import ProductsTable from '../../components/product/ProductsTable';
+import CategoriesTable from '../../components/category/CategoriesTable';
+import OrdersTable from '../../components/order/OrdersTable';
 const drawerWidth = 240;
 
-export default function AddProduct(props : any) {
+export default function Dashboard(props : any) {
  
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -135,7 +138,18 @@ export default function AddProduct(props : any) {
 
 
         </NavBar>
-       <AddProductForm/>
+        {currentView === "Users" &&
+        <UsersTable/>
+        }
+         {currentView === "Products" &&
+        <ProductsTable/>
+        }
+         {currentView === "Categories" &&
+        <CategoriesTable/>
+        }
+         {currentView === "Orders" &&
+        <OrdersTable/>
+        }
 
     </div>
   );

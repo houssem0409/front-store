@@ -4,7 +4,9 @@ import Container from "@mui/material/Container";
 export default function Profile() {
   return (
     <>
-      <NavBar></NavBar>
+      <NavBar>
+
+
       <Container fixed>
         <Box sx={{ bgcolor: "#cfe8fc", height: "50vh" }}>
           <h1>name</h1>
@@ -12,6 +14,7 @@ export default function Profile() {
           <h1>Email</h1>
         </Box>
       </Container>
+      </NavBar>
     </>
   );
 }

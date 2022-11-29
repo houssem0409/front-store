@@ -20,8 +20,10 @@ interface Props {
    * Injected by the documentation to work in an iframe.
    * You won't need it on your project.
    */
+   children: JSX.Element,
   window?: () => Window;
 }
+
 
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Contact'];
@@ -138,7 +140,7 @@ const navigate = useNavigate()
       </Box>
       <Box component="main" sx={{ p: 3 }}>
         <Toolbar />
-      
+      {props?.children}
       </Box>
     </Box>
   );
