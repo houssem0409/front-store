@@ -13,7 +13,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
-
+import { authenticate, signin } from '../auth';
 const theme = createTheme();
 
 export default function SignIn() {
@@ -22,28 +22,18 @@ export default function SignIn() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    const response = await fetch("http://localhost:5000/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      
-      body: JSON.stringify({ email: data.get('email') , password : data.get('password')  }),
-    });
-    if (response.ok) {
-      const user = await response.json(); // why await , response.json() is async function ?
-      localStorage.setItem('jwt' , user.token)
-      localStorage.setItem("user" , JSON.stringify( user.user))
-      navigate("/Products")
-      return { user };
+    signin({ email: data.get('email') , password : data.get('password')  }).then((res) =>{
+      if(res.error) {
+        console.log(res.error);
+        
     }else {
-        return response
+       authenticate(res , () => {
+            console.log("you are authenticated");
+            navigate("/Products")
+       })
     }
-  
-    // console.log({
-    //   email: data.get('email'),
-    //   password: data.get('password'),
-    // });
+    } )
+   
   };
 
   return (

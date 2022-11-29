@@ -10,7 +10,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import { signup } from '../auth';
 
 const theme = createTheme();
 
@@ -18,24 +18,17 @@ export default function SignUp() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const response = await fetch("http://localhost:5000/signup", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      
-      body: JSON.stringify({ name: data.get('firstName') , lastname: data.get('lastName') , password : data.get('password') , email : data.get('email') , phonenumber : data.get('phone')  }),
-    });
-    if (response.ok) {
-      const todo = await response.json(); // why await , response.json() is async function ?
-      return { todo };
-    }else {
-        return response
-    }
-    // console.log({
-    //   email: data.get('email'),
-    //   password: data.get('password'),
-    // });
+    console.log(data);
+    
+
+    signup({ name: data.get('firstName') , lastname: data.get('lastName') , 
+      password : data.get('password') , email : data.get('email') , phonenumber : data.get('Phone')  })
+    .then((res : any )  => {
+
+    console.log(res);
+    
+    })
+  
   };
 
   return (
@@ -91,8 +84,10 @@ export default function SignUp() {
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                defaultValue={0}
                   required
                   fullWidth
+                  type="number"
                   id="phone"
                   label="Phone Number"
                   name="Phone"
